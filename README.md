@@ -10,4 +10,4 @@ This [app](./apps/mysql-wordpress/README.md) creates a `Deployment` using Triden
 
 ## Wordpress from Bitnami Helm Chart
 
-This [app](../apps/bitnami-wordpress/README.md) creates a `StatefulSet` using Trident provisioned `PersistentVolume` using one of the Trident provided `StorageClass` options.
+This [app](./apps/bitnami-wordpress/README.md) creates a `StatefulSet` using Trident provisioned `PersistentVolume` using one of the Trident provided `StorageClass` options.
