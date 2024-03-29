@@ -1,0 +1,30 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+resources:
+- mysql-deployment.yaml
+- mysql-pvc.yaml
+- mysql-service.yaml
+- wordpress-deployment.yaml
+- wordpress-namespace.yaml
+- wordpress-pvc.yaml
+- wordpress-service.yaml
+
+secretGenerator:
+ - name: mysql-pass
+   literals:
+   - password=password
+
+generatorOptions:
+  disableNameSuffixHash: true
+
+images:
+  - name: mysql
+    newName: harbor.markalston.net/test-apps/mysql
+    newTag: 8.3.0
+  - name: sidecar
+    newName: harbor.markalston.net/test-apps/radial/busyboxplus
+    newTag: curl
+  - name: wordpress
+    newName: harbor.markalston.net/test-apps/wordpress
+    newTag: php8.2-apache

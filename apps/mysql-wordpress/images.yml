@@ -1,0 +1,20 @@
+manifest:
+  registry: harbor.markalston.net
+  registryUsername: admin
+  registryPasswordKey: harbor_admin_pw
+  images:
+  - name: mysql
+    tag: 8.3.0
+    format: docker
+    source: docker.io
+    project: test-apps
+  - name: wordpress
+    tag: php8.2-apache
+    format: docker
+    source: docker.io
+    project: test-apps
+  - name: radial/busyboxplus
+    tag: curl
+    format: docker
+    source: docker.io
+    project: test-apps
