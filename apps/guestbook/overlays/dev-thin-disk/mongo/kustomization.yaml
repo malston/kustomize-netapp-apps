@@ -4,11 +4,12 @@ kind: Kustomization
 namespace: testapp-guestbook
 
 resources:
- - ../../../base
+- ../../../base
+- namespace.yaml
 
 components:
- - ../../../components/ingress/istio
- - ../../../components/db/mongo
+- ../../../components/ingress/istio
+- ../../../components/db/mongo
 
 configMapGenerator:
 - name: parameters

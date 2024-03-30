@@ -1,4 +1,4 @@
 apiVersion: v1
 kind: Namespace
 metadata:
-  name:  storage-testing
+  name:  testapp-guestbook

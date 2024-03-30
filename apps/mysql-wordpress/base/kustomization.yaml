@@ -6,7 +6,6 @@ resources:
 - mysql-pvc.yaml
 - mysql-service.yaml
 - wordpress-deployment.yaml
-- wordpress-namespace.yaml
 - wordpress-pvc.yaml
 - wordpress-service.yaml
 

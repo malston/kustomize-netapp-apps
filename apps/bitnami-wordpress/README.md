@@ -43,5 +43,5 @@ Username: user
 Get the password:
 
 ```sh
-kubectl get secret --namespace testapp-wordpress wordpress -o jsonpath="{.data.wordpress-password}" | base64 -d
+kubectl get secret --namespace wordpress wordpress -o jsonpath="{.data.wordpress-password}" | base64 -d
 ```

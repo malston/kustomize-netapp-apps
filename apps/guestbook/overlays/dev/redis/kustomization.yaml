@@ -3,11 +3,12 @@ kind: Kustomization
 
 namespace: testapp-guestbook
 resources:
- - ../../../base
+- ../../../base
+- namespace.yaml
 
 components:
- - ../../../components/ingress/contour
- - ../../../components/db/redis
+- ../../../components/ingress/contour
+- ../../../components/db/redis
 
 configMapGenerator:
 - name: parameters
