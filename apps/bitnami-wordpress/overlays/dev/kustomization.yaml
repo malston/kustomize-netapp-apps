@@ -7,47 +7,27 @@ resources:
 - ../../base
 - namespace.yaml
 
-helmCharts:
+commonLabels:
+  app.kubernetes.io/cluster: cluster01.markalston.net
+
+secretGenerator:
+- name: wordpress-mariadb
+  namespace: wordpress
+  behavior: replace
+  literals:
+    - mariadb-password=password
+    - mariadb-root-password=password
 - name: wordpress
-  includeCRDs: false
-  valuesMerge: replace
-  valuesInline:
-    global:
-      imageRegistry: docker.io
-    image:
-      registry: docker.io
-      repository: bitnami/wordpress
-      tag: 6.4.3-debian-12-r18
-    persistence:
-      size: 10Gi
-    service:
-      type: ClusterIP
-    serviceAccount:
-      create: false
-    mariadb:
-      serviceAccount:
-        create: false
-      image:
-        repository: bitnami/mariadb
-        tag: 11.2.3-debian-12-r4
-      networkPolicy:
-        enabled: false
-  releaseName: wordpress
-  version: 20.0.1
-  repo: https://charts.bitnami.com/bitnami
-
-configMapGenerator:
-- name: parameters
-  env: params.env
-
-generatorOptions:
-  disableNameSuffixHash: true
+  namespace: wordpress
+  behavior: replace
+  literals:
+    - wordpress-password=password
 
 replacements:
 - source:
-    kind: ConfigMap
-    name: parameters
-    fieldPath: data.clusterDomain
+    kind: HTTPProxy
+    name: wordpress
+    fieldPath: metadata.labels.[app.kubernetes.io/cluster]
   targets:
   - select:
       kind: HTTPProxy
@@ -58,21 +38,21 @@ replacements:
       delimiter: .
       index: 1
 
-components:
-- ../../components/ingress/contour
-
 patches:
 - patch: |
     - op: replace
-      path: /spec/volumeClaimTemplates/0/spec/storageClassName
-      value: thin-disk
+      path: /spec/template/spec/containers/0/image
+      value: harbor.markalston.net/test-apps/wordpress:6.4.3-debian-12-r18
+  target:
+    kind: Deployment
+    name: wordpress
+- patch: |
+    - op: replace
+      path: /spec/template/spec/containers/0/image
+      value: harbor.markalston.net/test-apps/mariadb:11.2.3-debian-12-r4
   target:
     kind: StatefulSet
     name: wordpress-mariadb
-- patch: |
-    - op: replace
-      path: /spec/storageClassName
-      value: thin-disk
-  target:
-    kind: PersistentVolumeClaim
-    name: wordpress
+
+components:
+- ../../components/ingress/contour

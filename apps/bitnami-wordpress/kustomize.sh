@@ -16,6 +16,7 @@ Examples:
     $0 build dev-nas-ultra
     $0 delete dev-nas-ultra
     $0 diff dev-nas-performance dev-nas-ultra
+    $0 diff base dev
 EOF
 }
 
