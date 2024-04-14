@@ -33,15 +33,9 @@ Apply based upon your environment
 
 ## Login
 
-Login to:
-```sh
-ttps://$(kubectl get cm --namespace $namespace parameters -ojsonpath='{.data.clusterDomain}')
-```
-
-Username: user
-
-Get the password:
+Login by running
 
 ```sh
-kubectl get secret --namespace wordpress wordpress -o jsonpath="{.data.wordpress-password}" | base64 -d
+echo "username: user"
+echo "password: $(kubectl get secret --namespace wordpress wordpress -o jsonpath="{.data.wordpress-password}" | base64 -d)"
 ```
