@@ -4,9 +4,9 @@ metadata:
   name: notImportantHere
 replacements:
 - source:
-    kind: HTTPProxy
-    name: wordpress
-    fieldPath: metadata.labels.[app.kubernetes.io/cluster]
+    kind: ConfigMap
+    name: parameters
+    fieldPath: data.cluster
   targets:
   - select:
       kind: HTTPProxy

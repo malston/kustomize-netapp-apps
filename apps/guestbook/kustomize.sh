@@ -63,7 +63,7 @@ function set_cluster_domain() {
 function convert_to_overlay_dir {
   local overlay=$1
   if [[ ! $overlay == "./overlays/"* && \
-      ! $overlay == "./overlays/"* && \
+      ! $overlay == "overlays/"* && \
       ! $overlay == "base" ]]; then
     overlay="overlays/$1"
   fi

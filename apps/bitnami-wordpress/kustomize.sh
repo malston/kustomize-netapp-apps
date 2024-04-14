@@ -47,24 +47,10 @@ function create_registry_secret() {
       --namespace "$namespace"
 }
 
-function set_cluster_domain() {
-  local overlay=$1
-  export CLUSTER
-  CLUSTER="$(kubectl config current-context)"
-
-  # Loop through params.env files
-  while IFS= read -r -d '' file; do
-    if [ -f "$file" ]; then
-      # Perform variable substitution using envsubst
-      envsubst < "$file" > "$file.tmp" && mv "$file.tmp" "$file"
-    fi
-  done <   <(find "$overlay" -name '*.env' -print0)
-}
-
 function convert_to_overlay_dir {
   local overlay=$1
   if [[ ! $overlay == "./overlays/"* && \
-      ! $overlay == "./overlays/"* && \
+      ! $overlay == "overlays/"* && \
       ! $overlay == "base" ]]; then
     overlay="overlays/$1"
   fi
@@ -72,8 +58,10 @@ function convert_to_overlay_dir {
 }
 
 function kustomizeIt {
-  set_cluster_domain "$__DIR/$1" &>/dev/null
-  kubectl kustomize --enable-helm "$__DIR/$1"
+  if [[ -z $CLUSTER_DOMAIN ]]; then
+    CLUSTER_DOMAIN="$(kubectl config current-context)"
+  fi
+  kubectl kustomize --enable-alpha-plugins --enable-helm "$__DIR/$1"
 }
 
 function build {
