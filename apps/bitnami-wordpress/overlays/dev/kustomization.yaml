@@ -10,7 +10,7 @@ resources:
 labels:
 - includeSelectors: true
   pairs:
-    app.kubernetes.io/cluster: dev1.cluster01.markalston.net
+    app.kubernetes.io/app: wordpress
 
 secretGenerator:
 - name: wordpress-mariadb

@@ -7,6 +7,11 @@ resources:
 - ../../base
 - namespace.yaml
 
+labels:
+- includeSelectors: true
+  pairs:
+    app.kubernetes.io/app: wordpress
+
 secretGenerator:
 - name: wordpress-mariadb
   namespace: wordpress
@@ -38,6 +43,9 @@ patches:
 
 transformers:
 - ../../transformers/istio
+
+generators:
+- ../../generators/bashconfigmap
 
 components:
 - ../../components/ingress/istio
