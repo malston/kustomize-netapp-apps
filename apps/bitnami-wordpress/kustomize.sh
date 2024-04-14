@@ -61,7 +61,7 @@ function kustomizeIt {
   if [[ -z $CLUSTER_DOMAIN ]]; then
     CLUSTER_DOMAIN="$(kubectl config current-context)"
   fi
-  kubectl kustomize --enable-alpha-plugins --enable-helm "$__DIR/$1"
+  XDG_CONFIG_HOME=$__DIR/../../plugins kubectl kustomize --enable-alpha-plugins --enable-helm "$__DIR/$1"
 }
 
 function build {
