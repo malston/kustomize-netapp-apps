@@ -18,17 +18,17 @@ Apply based upon your environment
 - **dev**
 
     ```sh
-    ./run.sh apply dev-nas-performance
+    ./kustomize.sh apply dev-nas-performance
     ```
 
     ```sh
-    ./run.sh apply dev-nas-ultra
+    ./kustomize.sh apply dev-nas-ultra
     ```
 
 - **prod**
 
     ```sh
-    ./run.sh apply prod
+    ./kustomize.sh apply prod
     ```
 
 ## Login

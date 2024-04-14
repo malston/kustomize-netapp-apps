@@ -26,37 +26,37 @@ Apply based upon your choice of storage
 * `nas-performance` and `mongodb`
 
     ```sh
-    ./run.sh apply dev-nas-performance/mongo
+    ./kustomize.sh apply dev-nas-performance/mongo
     ```
 
 * `nas-ultra` and `mongodb`
 
     ```sh
-    ./run.sh apply dev-nas-ultra/mongo
+    ./kustomize.sh apply dev-nas-ultra/mongo
     ```
 
 * `thin-disk` and `mongodb`
 
     ```sh
-    ./run.sh apply dev-thin-disk/mongo
+    ./kustomize.sh apply dev-thin-disk/mongo
     ```
 
 * `nas-performance` and `redis`
 
     ```sh
-    ./run.sh apply dev-nas-performance/redis
+    ./kustomize.sh apply dev-nas-performance/redis
     ```
 
 * `nas-ultra` and `redis`
 
     ```sh
-    ./run.sh apply dev-nas-ultra/redis
+    ./kustomize.sh apply dev-nas-ultra/redis
     ```
 
 * `thin-disk` and `redis`
 
     ```sh
-    ./run.sh apply dev-thin-disk/redis
+    ./kustomize.sh apply dev-thin-disk/redis
     ```
 
 ## Connect to MongoDB shell
