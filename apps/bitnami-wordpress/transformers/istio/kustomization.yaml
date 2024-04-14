@@ -1,0 +1,3 @@
+resources:
+- labels.yaml
+- replacements.yaml

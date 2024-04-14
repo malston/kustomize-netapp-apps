@@ -1,0 +1,10 @@
+apiVersion: builtin
+kind: LabelTransformer
+metadata:
+  name: notImportantHere
+labels:
+  app.kubernetes.io/cluster: cluster01.markalston.net
+fieldSpecs:
+- kind: HTTPProxy
+  path: metadata/labels
+  create: true

@@ -3,11 +3,6 @@ kind: Kustomization
 
 namespace: wordpress
 
-# secretGenerator:
-# - name: wordpress-mariadb
-#   namespace: wordpress
-#   behavior: create
-
 helmCharts:
 - name: wordpress
   namespace: wordpress

@@ -7,9 +7,6 @@ resources:
 - ../../base
 - namespace.yaml
 
-commonLabels:
-  app.kubernetes.io/cluster: cluster01.markalston.net
-
 secretGenerator:
 - name: wordpress-mariadb
   namespace: wordpress
@@ -22,21 +19,6 @@ secretGenerator:
   behavior: replace
   literals:
     - wordpress-password=password
-
-replacements:
-- source:
-    kind: HTTPProxy
-    name: wordpress
-    fieldPath: metadata.labels.[app.kubernetes.io/cluster]
-  targets:
-  - select:
-      kind: HTTPProxy
-      name: wordpress
-    fieldPaths:
-    - spec.virtualhost.fqdn
-    options:
-      delimiter: .
-      index: 1
 
 patches:
 - patch: |
@@ -53,6 +35,9 @@ patches:
   target:
     kind: StatefulSet
     name: wordpress-mariadb
+
+transformers:
+- ../../transformers/contour
 
 components:
 - ../../components/ingress/contour
