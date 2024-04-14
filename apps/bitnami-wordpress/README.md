@@ -33,7 +33,7 @@ Apply based upon your environment
 
 ## Login
 
-Login by running
+Get login credentials:
 
 ```sh
 echo "username: user"
