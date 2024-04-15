@@ -13,7 +13,6 @@ Download images from Docker and transfer them to Harbor
 ## Deploy
 
 Apply based upon your environment
-`istio` is used for ingress and `nas-performance` is used for the storage class
 
 - **dev**
 
